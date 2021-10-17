@@ -18,6 +18,7 @@ const STATUS_CODES = {
 const REQUEST_METHODS = {
   get: "GET",
   post: "POST",
+  delete: "DELETE",
 };
 
 function helloRoute(query) {
@@ -80,6 +81,11 @@ const server = http.createServer((req, res) => {
   if (method === REQUEST_METHODS.post) {
     setStatusCode(res, STATUS_CODES.notAllowed);
     writeBody(res, "Not allowed");
+  }
+
+  if (method === REQUEST_METHODS.delete) {
+    setStatusCode(res, STATUS_CODES.success);
+    writeBody(res, "Removed successfully");
   }
 
   res.end();
